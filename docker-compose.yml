@@ -72,20 +72,32 @@ services:
     command: ["postgres", "-c", "shared_preload_libraries=vectors.so", "-c", 'search_path="$$user", public, vectors', "-c", "logging_collector=on", "-c", "max_wal_size=2GB", "-c", "shared_buffers=512MB", "-c", "wal_compression=on"]
     restart: always
 
-    db:
-      image: mariadb:10.6
-      restart: always
-      command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
-      volumes: db:/var/lib/mysql
-      environment: MYSQL_ROOT_PASSWORD=${DBA_PASSWORD} MYSQL_PASSWORD=${DBA_PASSWORD} MYSQL_DATABASE=nextcloud MYSQL_USER=nextcloud
+  db:
+    image: mariadb:10.6
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DBM_PASSWORD}
+      - MYSQL_PASSWORD=${DBM_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
   app:
     image: nextcloud
     restart: always
-    ports: 8080:80
-    links: db
-    volumes: nextcloud:/var/www/html
-    environment: MYSQL_PASSWORD=${DBA_PASSWORD} MYSQL_DATABASE=nextcloud MYSQL_USER=nextcloud MYSQL_HOST=db
-
+    ports:
+      - 8080:80
+    links:
+      - db
+    volumes:
+      - nextcloud:/var/www/html
+    environment:
+      - MYSQL_PASSWORD=${DBM_PASSWORD}
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
 
 volumes:
   model-cache:
