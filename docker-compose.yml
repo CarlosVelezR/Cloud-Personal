@@ -8,6 +8,11 @@
 
 name: immich
 
+volumes:
+  model-cache:
+  nextcloud:
+  db:
+  
 services:
   immich-server:
     container_name: immich_server
@@ -99,7 +104,10 @@ services:
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
 
-volumes:
-  model-cache:
-  nextcloud:
-  db:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8082:8082
+      
+
