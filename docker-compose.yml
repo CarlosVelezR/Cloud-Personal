@@ -79,8 +79,8 @@ services:
       volumes:
       - db:/var/lib/mysql
       environment:
-      - MYSQL_ROOT_PASSWORD=${DBA_PASSWORD}
-      - MYSQL_PASSWORD=${DBA_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=1032
+      - MYSQL_PASSWORD=1032
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
 
@@ -94,7 +94,7 @@ services:
     volumes:
       - nextcloud:/var/www/html
     environment:
-      - MYSQL_PASSWORD=${DBA_PASSWORD}
+      - MYSQL_PASSWORD=1032
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
