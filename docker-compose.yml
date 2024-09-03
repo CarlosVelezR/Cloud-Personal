@@ -26,9 +26,9 @@ services:
     volumes:
       - 'minio_data:/bitnami/minio/data'
 
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+#    environment:
+#      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+#      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
 
   immich-server:
     container_name: immich_server
@@ -119,6 +119,8 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db
+      - NEXTCLOUD_ADMIN_USER=ncadmin
+      - NEXTCLOUD_ADMIN_PASSWORD=ncadmin
 
   
 
