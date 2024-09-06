@@ -1,0 +1,39 @@
+---------------------------------------
+Immich installation / Nextcloud / Minio
+Replace drsean by your user.
+---------------------------------------
+
+mkdir /var/www/html
+mkdir /home/drsean/immich
+cd /home/drsean/immich
+mkdir /home/drsean/immich/data
+
+wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/QA/docker-compose.yml
+
+wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/QA/.env
+
+docker compose up -d
+
+---------------------------------------
+Uninstall Apps and Containers
+---------------------------------------
+docker system prune --all
+docker volume prune
+docker network prune
+
+rm -r /home/drsean/immich
+
+---------------------------------------
+Installation path NextCloud by default
+---------------------------------------
+/var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
+--------------------------------------
+Next Cloud Maintenance mode
+--------------------------------------
+sudo -u www-data php "$ncdir/occ" maintenance:mode --on
+---------------------------------------
+Old: /var/www/html/data
+New: /var/snap/docker/common/var-lib-docker/volumes/immich_minio_data/_data
+
+/var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/data/nextcloud.log
+---------------------------------------
