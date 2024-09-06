@@ -17,6 +17,7 @@ docker compose up -d
 ---------------------------------------
 Uninstall Apps and Containers
 ---------------------------------------
+docker stop $(docker ps -q)
 docker system prune --all
 docker volume prune
 docker network prune
