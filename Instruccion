@@ -23,6 +23,8 @@ docker volume prune
 docker network prune
 
 rm -r /home/drsean/immich
+rm docker-compose.yml
+rm .env
 
 ---------------------------------------
 Installation path NextCloud by default
