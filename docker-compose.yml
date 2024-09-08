@@ -117,6 +117,10 @@ services:
       - 8080:80
     links:
       - db
+    
+    env_file:
+      - .env
+
     volumes:
       - nextcloud:${DATA_PATH}
     environment:
@@ -130,3 +134,5 @@ services:
       - OBJECTSTORE_S3_SECRET=${OBJECTSTORE_S3_SECRET}
       - OBJECTSTORE_S3_KEY=${OBJECTSTORE_S3_KEY}
       - NEXTCLOUD_TRUSTED_DOMAINS=${OBJ_S3_BUCKET_TRUSTED}
+
+    
