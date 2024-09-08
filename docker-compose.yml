@@ -18,9 +18,6 @@ volumes:
   
 services:
 
-  env_file:
-    - .env 
-
   minio:
     image: docker.io/bitnami/minio:2024
     ports:
@@ -28,6 +25,9 @@ services:
       - '9001:9001'    
     volumes:
       - 'minio_data:/bitnami/minio/data'
+
+    env_file:
+    - .env 
 
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
