@@ -25,22 +25,29 @@ mkdir /home/drsean/immich/data
 
 docker compose up -d
 
-4. Create a bucket in your minio instance, you've to login in your minio console with the credentials setted in your .env file. (https://192.168.145.145:9001) and add the bucket
-name into the config.php file.
+4. Create a bucket in your minio instance, you've to login in your minio console with the credentials setted in your .env file. (https://192.168.145.145:9001).
 
-5. Create an Access key in your minio intance and add it to the config.php file using VIM.
+5. Create an Access key in your minio intance.
 
-6. Edit config.php file with your information and move it to config folder VIM.
+6. Move the config file 
 
 mv config.php /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/
+
+7. Add your bucket name and access key to the config.php file using VIM.
+
+vi /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
+
+8. Set write and read permissions.
+
+chmod 777 /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
 
 Done!
 
 You can test your services.
 
-http://192.168.145.145:8080 -> NextCloud to manage your files.
-http://192.168.145.145:9001 -> Minio to manage your own S3 bucket.
-http://192.168.145.145:2283 -> Immich App to Store your photos.
+http://192.168.145.145:8080 -> NextCloud to manage your files. (User credentials setted in your .env file)
+http://192.168.145.145:9001 -> Minio to manage your own S3 bucket. (User credentials setted in your .env file)
+http://192.168.145.145:2283 -> Immich App to Store your photos. 
 
 
 ---------------------------------------------------------------------------------------------------------------------------
