@@ -32,6 +32,7 @@ services:
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    command: server /bitnami/minio/data
 
   createbuckets:
     image: minio/mc
@@ -39,7 +40,7 @@ services:
       - minio
     entrypoint: >
       /bin/sh -c "
-      /usr/bin/mc alias set myminio http://${OBJECTSTORE_S3_HOST}:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
+      /usr/bin/mc alias set myminio http://192.168.145.145:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
       /usr/bin/mc mb myminio/immichbucket;
       /usr/bin/mc policy set public myminio/immichbucket;
       exit 0;
