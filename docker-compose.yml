@@ -39,7 +39,7 @@ services:
       - minio
     entrypoint: >
       /bin/sh -c "
-      /usr/bin/mc alias set myminio ${OBJECTSTORE_S3_HOST}:9000 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
+      /usr/bin/mc alias set myminio ${OBJECTSTORE_S3_HOST}:9001 ${MINIO_ROOT_USER} ${MINIO_ROOT_PASSWORD};
       /usr/bin/mc mb myminio/immichbucket;
       /usr/bin/mc policy set public myminio/immichbucket;
       exit 0;
