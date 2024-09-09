@@ -1,0 +1,75 @@
+---------------------------------------
+Immich installation / Nextcloud / Minio
+Replace drsean by your user.
+---------------------------------------
+Steps 4 and 5 just if you want to configure a S3 service as primary storage.
+
+1. Create your directories.
+
+mkdir /var/www/html
+mkdir /home/drsean/immich
+cd /home/drsean/immich
+mkdir /home/drsean/immich/data
+
+2. Get configuration files from GitHub
+
+    wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/QA/docker-compose.yml
+
+    wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/QA/.env
+
+    wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/QA/config.php
+    
+
+
+3. Execute docker compose file.
+
+docker compose up -d
+
+4. Create a bucket in your minio instance, you've to login in your minio console with the credentials setted in your .env file. (https://192.168.145.145:9001) and add the bucket
+name into the config.php file.
+
+5. Create an Access key in your minio intance and add it to the config.php file using VIM.
+
+6. Edit config.php file with your information and move it to config folder VIM.
+
+mv config.php /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/
+
+Done!
+
+You can test your services.
+
+http://192.168.145.145:8080 -> NextCloud to manage your files.
+http://192.168.145.145:9001 -> Minio to manage your own S3 bucket.
+http://192.168.145.145:2283 -> Immich App to Store your photos.
+
+
+---------------------------------------------------------------------------------------------------------------------------
+Uninstall Apps and Containers
+
+docker stop $(docker ps -q)
+docker system prune --all
+docker volume prune
+docker network prune
+
+rm -r /home/drsean/immich
+rm docker-compose.yml
+rm .env
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+/var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
+
+Next Cloud Maintenance mode
+
+Activate Maintenance mode: 
+
+sudo -u www-data php "$ncdir/occ" maintenance:mode --on
+
+Installation Path: 
+
+/var/snap/docker/common/var-lib-docker/volumes/immich_minio_data/_data
+
+NextCloud default log: 
+
+/var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/data/nextcloud.log
