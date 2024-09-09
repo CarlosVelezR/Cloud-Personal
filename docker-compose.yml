@@ -19,7 +19,7 @@ volumes:
 services:
 
   minio:
-    image: docker.io/bitnami/minio:2024
+    image: docker.io/bitnami/minio:latest
     ports:
       - '9000:9000'
       - '9001:9001'    

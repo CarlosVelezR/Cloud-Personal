@@ -20,12 +20,11 @@ mkdir /home/drsean/immich/data
     wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/QA/config.php
     
 
-
 3. Execute docker compose file.
 
 docker compose up -d
 
-4. Create a bucket in your minio instance, you've to login in your minio console with the credentials setted in your .env file. (https://192.168.145.145:9001).
+4. Create a bucket in your minio instance, you've to login in your minio console with the credentials setted in your .env file. (http://192.168.145.145:9001).
 
 5. Create an Access key in your minio intance.
 
