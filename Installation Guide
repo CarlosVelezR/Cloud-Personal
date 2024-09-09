@@ -22,7 +22,7 @@ mkdir /home/drsean/immich/data
 
 3. Execute docker compose file.
 
-docker compose up -d
+docker compose up -d --force-recreate
 
 4. Create a bucket in your minio instance, you've to login in your minio console with the credentials setted in your .env file. (http://192.168.145.145:9001).
 
@@ -39,6 +39,8 @@ vi /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/
 8. Set write and read permissions.
 
 chmod 777 /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
+
+chmod 777 /var/snap/docker/common/var-lib-docker/volumes/immich_minio_data/_data/immichbucket
 
 Done!
 
