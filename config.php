@@ -1,4 +1,3 @@
-#Example file of configuration on NextCloud, You should to modify the trusted domains adding the remotes trusted address to install.
 <?php
 $CONFIG = array (
   'htaccess.RewriteBase' => '/',
@@ -19,15 +18,32 @@ $CONFIG = array (
     ),
   ),
   'upgrade.disable-web' => true,
-  'passwordsalt' => 'JbV4J42/TuZs9EoLBAhs8Bx78/MgZ7',
-  'secret' => '/849HrrzLpXucLD/R0Ey9qd7ni9TdYKN73oeUrhazSSdhakk',
+  'passwordsalt' => 'X/jbNFldnOgLL6C4fA+/ifSt4NA1+g',
+  'secret' => 'k4qeaJQDy23V3esK0fZQgllxuF3vdyNdhDzPsn61fEjOWSge',
   'trusted_domains' =>
   array (
-    0 => '192.168.145.145:8080',
+    0 => 'localhost',
+    1 => '192.168.145.145',
+    2 => '192.168.145.145:9000',
+    3 => '192.168.145.145:9001',
+    4 => '192.168.145.145:8080',
   ),
+
+ 'objectstore' => [
+        'class' => '\\OC\\Files\\ObjectStore\\S3',
+        'arguments' => [
+                'bucket' => 'nextcloudbucket',
+                'hostname' => '192.168.145.145',
+                'key' => 'ArgJCTTeaqyhbPmwTcWQ',
+                'secret' => 'u96KxoOfSoU1JopJszxpIaKW4kQxl9Nnm3lmorhr',
+                'port' => 9000,
+                'use_path_style' => true,
+                'use_ssl' => false,
+        ],
+],
   'datadirectory' => '/var/www/html/data',
   'dbtype' => 'mysql',
-  'version' => '29.0.5.1',
+  'version' => '29.0.6.1',
   'overwrite.cli.url' => 'http://localhost',
   'dbname' => 'nextcloud',
   'dbhost' => 'db',
@@ -37,5 +53,5 @@ $CONFIG = array (
   'dbuser' => 'nextcloud',
   'dbpassword' => 'Carlos',
   'installed' => true,
-  'instanceid' => 'oc0v2xghyprh',
+  'instanceid' => 'ocwj70xiaj7m',
 );
