@@ -55,7 +55,6 @@ rm -r /home/drsean/immich
 rm docker-compose.yml
 rm .env
 
-
 ---------------------------------------------------------------------------------------------------------------------------
 
 /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
