@@ -50,7 +50,6 @@ http://192.168.145.145:8080 -> NextCloud to manage your files. (User credentials
 http://192.168.145.145:9001 -> Minio to manage your own S3 bucket. (User credentials setted in your .env file)
 http://192.168.145.145:2283 -> Immich App to Store your photos. 
 
-
 ---------------------------------------------------------------------------------------------------------------------------
 Uninstall Apps and Containers
 
@@ -60,8 +59,6 @@ docker volume prune
 docker network prune
 
 rm -r /home/drsean/immich
-rm docker-compose.yml
-rm .env
 
 ---------------------------------------------------------------------------------------------------------------------------
 
@@ -80,3 +77,6 @@ Installation Path:
 NextCloud default log: 
 
 /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/data/nextcloud.log
+
+------ ver log CRON
+tail -f /var/log/syslog | grep CRON
