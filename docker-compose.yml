@@ -12,26 +12,8 @@ volumes:
   model-cache:
   nextcloud:
   db:
-  minio_data:
-    driver: local
-
   
 services:
-
-  minio:
-    image: docker.io/bitnami/minio:2024
-    ports:
-      - '9000:9000'
-      - '9001:9001'    
-    volumes:
-      - 'minio_data:/bitnami/minio/data'
-
-    env_file:
-      - .env 
-
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
 
   immich-server:
     container_name: immich_server
@@ -130,8 +112,5 @@ services:
       - MYSQL_HOST=db
       - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER}
       - NEXTCLOUD_ADMIN_PASSWORD=${NEXTCLOUD_ADMIN_PASSWORD}
-      - OBJECTSTORE_S3_BUCKET=${OBJECTSTORE_S3_BUCKET}
-      - OBJECTSTORE_S3_SECRET=${OBJECTSTORE_S3_SECRET}
-      - OBJECTSTORE_S3_KEY=${OBJECTSTORE_S3_KEY}
       - NEXTCLOUD_TRUSTED_DOMAINS=${OBJ_S3_BUCKET_TRUSTED}
     
