@@ -13,11 +13,11 @@ mkdir /home/drsean/immich/data
 
 2. Get configuration files from GitHub
 
-        wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/QA/docker-compose.yml
+        wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/docker-compose.yml
 
-        wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/QA/.env
+        wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/.env
 
-        wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/QA/config.php
+        wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/config.php
     
 
 3. Execute docker compose file.
