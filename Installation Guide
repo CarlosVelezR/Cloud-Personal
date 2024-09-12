@@ -78,6 +78,5 @@ sudo -u www-data php "$ncdir/occ" maintenance:mode --on
 NextCloud default log: 
 
 /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/data/nextcloud.log
-
 ------ ver log CRON
 tail -f /var/log/syslog | grep CRON
