@@ -10,6 +10,7 @@ mkdir /var/www/html
 mkdir /home/drsean/immich
 cd /home/drsean/immich
 mkdir /home/drsean/immich/data
+mkdir /home/drsean/sh
 
 2. Get configuration files from GitHub
 
@@ -17,37 +18,18 @@ mkdir /home/drsean/immich/data
 
         wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/.env
 
-        wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/config.php
+        wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/backup.sh
     
 
 3. Execute docker compose file.
 
 docker compose up -d --force-recreate
 
-4. Create a bucket in your minio instance, you've to login in your minio console with the credentials setted in your .env file. (http://192.168.145.145:9001).
-
-5. Create an Access key in your minio intance.
-
-6. Move the config file 
-
-mv config.php /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/
-
-7. Add your bucket name and access key to the config.php file using VIM.
-
-vi /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
-
-8. Set write and read permissions.
-
-chmod 777 /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
-
-chmod 777 /var/snap/docker/common/var-lib-docker/volumes/immich_minio_data/_data/immichbucket
-
 Done!
 
 You can test your services.
 
 http://192.168.145.145:8080 -> NextCloud to manage your files. (User credentials setted in your .env file)
-http://192.168.145.145:9001 -> Minio to manage your own S3 bucket. (User credentials setted in your .env file)
 http://192.168.145.145:2283 -> Immich App to Store your photos.
 ---------------------------------------------------------------------------------------------------------------------------
 Sync Data - With S3
@@ -62,7 +44,8 @@ rclone config
 
 3. Edit and Move backup.sh with your s3 Connection
 
-mv /home/drsean/immich/ /home/drsean/sh
+mkdir /home/drsean/sh
+mv /home/drsean/immich/backup.sh /home/drsean/sh/backup.sh
 
 4. Create a Crontab task, I added a Crontab example!
 
@@ -81,6 +64,7 @@ docker network prune
 rm -r /home/drsean/immich
 
 ---------------------------------------------------------------------------------------------------------------------------
+Next Cloud Configuration.
 
 /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
 
@@ -89,10 +73,6 @@ Next Cloud Maintenance mode
 Activate Maintenance mode: 
 
 sudo -u www-data php "$ncdir/occ" maintenance:mode --on
-
-Installation Path: 
-
-/var/snap/docker/common/var-lib-docker/volumes/immich_minio_data/_data
 
 NextCloud default log: 
 

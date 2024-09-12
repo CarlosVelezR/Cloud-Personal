@@ -1,2 +1,2 @@
 #!/bin/sh
-rclone sync /home/drsean/immich/data tiercarlos:prueba
+rclone sync /home/drsean/immich/data bucketdrsean:bucketdrsean
