@@ -14,12 +14,13 @@ mkdir /home/drsean/sh
 
 2. Get configuration files from GitHub
 
-        wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/docker-compose.yml
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/docker-compose.yml
 
-        wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/.env
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/.env
 
-        wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/backup.sh
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/config.php
     
+
 
 3. Execute docker compose file.
 
