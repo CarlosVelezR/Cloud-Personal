@@ -1,2 +1,2 @@
 #!/bin/sh
-rclone sync /var/snap/docker/common/var-lib-docker/volumes/immich_minio_data/_data/immichbucket tiercarlos:prueba
+rclone sync /home/drsean/immich/data tiercarlos:prueba
