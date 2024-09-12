@@ -13,11 +13,11 @@ mkdir /home/drsean/immich/data
 
 2. Get configuration files from GitHub
 
-    wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/main/docker-compose.yml
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/docker-compose.yml
 
-    wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/main/.env
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/.env
 
-    wget https://raw.githubusercontent.com/CarlosVelezR/desktop-tutorial/main/config.php
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/config.php
     
 
 
