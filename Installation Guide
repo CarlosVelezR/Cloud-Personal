@@ -14,13 +14,12 @@ mkdir /home/drsean/sh
 
 2. Get configuration files from GitHub
 
-    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/docker-compose.yml
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/docker-compose.yml
 
-    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/.env
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/.env
 
-    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/config.php
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/config.php
     
-
 
 3. Execute docker compose file.
 
@@ -80,3 +79,10 @@ NextCloud default log:
 /var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/data/nextcloud.log
 ------ ver log CRON
 tail -f /var/log/syslog | grep CRON
+
+
+/var/snap/docker/common/var-lib-docker/overlay2/a46e8975a84113fb4b122b80e02e770b1debd3ef75a71b6766ff2431270a9418/diff/etc/apache2/apache2.conf
+
+
+aws s3 sync /home/drsean/immich/data/ s3://cloudsv/data --exclude "/home/drsean/immich/data/thumbs/*" --storage-class DEEP_ARCHIVE &
+

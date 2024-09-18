@@ -1,2 +1,2 @@
-*/1 * * * * cd /home/drsean/sh && sh backup.sh
+*/1 * * * * cd /home/drsean/sh && sh backup.sh &
 */1 * * * * /usr/bin/killall rclone > /dev/null 2>&1
