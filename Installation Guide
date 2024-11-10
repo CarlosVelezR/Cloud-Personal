@@ -86,3 +86,14 @@ tail -f /var/log/syslog | grep CRON
 
 aws s3 sync /home/drsean/immich/data/ s3://cloudsv/data --exclude "/home/drsean/immich/data/thumbs/*" --storage-class DEEP_ARCHIVE &
 
+--------------------------------------------------------------------------------------------------------------------------------------------
+Create a Borg Repository
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+UPLOAD_LOCATION="/home/drsean/immich"
+BACKUP_PATH="/home/drsean/immich/backup"
+
+mkdir "$UPLOAD_LOCATION/database-backup"
+borg init --encryption=none "$BACKUP_PATH"
+
+--------------------------------------------------------------------------------------------------------------------------------------------
