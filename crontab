@@ -1,2 +1,2 @@
-*/1 * * * * cd /home/drsean/sh && sh backup.sh &
-*/1 * * * * /usr/bin/killall rclone > /dev/null 2>&1
+0 1 15 1,3,6,9,12 * cd /home/drsean/sh && sh backupimmich.sh &
+0 1 17 1,3,6,9,12 * cd /home/drsean/sh && sh BackupToS3.sh &
