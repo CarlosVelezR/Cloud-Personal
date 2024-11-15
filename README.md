@@ -1,5 +1,3 @@
-# Welcome to GitHub Desktop!
-
 # Cloud-Personal Docker Setup
 
 This repository contains scripts and Docker configuration files to set up your own personal cloud storage solution using **Cloud-Personal**. The project includes Docker configuration, as well as Bash scripts to automate the deployment and management of the cloud service on your server.
