@@ -58,7 +58,7 @@ Start by cloning the repository to your local machine or server:
 git clone https://github.com/CarlosVelezR/Cloud-Personal.git
 cd Cloud-Personal-docker-setup
 ```
-### 3. Create the folders - Replace yourUser.
+### 3. Create the folders - Replace path with yourUser.
 
 mkdir /var/www/html
 mkdir /home/yourUser/immich
@@ -107,7 +107,42 @@ You can use the following URLs for some common actions:
 
 - **Web Interface**: `http://localhost:8080`
 - **Login page**: `http://localhost:8080/login`
-  
+
+## BackUp
+
+To backup your data install Borg in your Linux Server.
+
+```
+apt install borgbackup
+
+```
+Config your repository
+
+```
+UPLOAD_LOCATION="/home/drsean/immich"
+BACKUP_PATH="/home/drsean/immich/backup"
+mkdir "$BACKUP_PATH"
+mkdir "$UPLOAD_LOCATION/database-backup"
+borg init --encryption=none "$BACKUP_PATH"
+```
+
+
+Execute backupimmich.sh to generate a backup.
+
+```
+sh /home/drsean/immich/sh/backupimmich.sh &
+```
+
+## How to Restore a Backup?
+
+Execute RestoreBackUp.sh
+
+```
+sh /home/drsean/immich/sh/RestoreBackUp.sh &
+
+```
+
+
 ---
 
 ## Customization
