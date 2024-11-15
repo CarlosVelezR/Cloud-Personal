@@ -59,12 +59,13 @@ git clone https://github.com/CarlosVelezR/Cloud-Personal.git
 cd Cloud-Personal-docker-setup
 ```
 ### 3. Create the folders - Replace path with yourUser.
-
+```
 mkdir /var/www/html
 mkdir /home/yourUser/immich
 cd /home/yourUser/immich
 mkdir /home/yourUser/immich/data
 mkdir /home/yourUser/sh
+```
 
 ### 2. Build the Docker Containers
 
@@ -114,7 +115,6 @@ To backup your data install Borg in your Linux Server.
 
 ```
 apt install borgbackup
-
 ```
 Config your repository
 
@@ -141,8 +141,6 @@ Execute RestoreBackUp.sh
 sh /home/drsean/immich/sh/RestoreBackUp.sh &
 
 ```
-
-
 ---
 
 ## Customization
