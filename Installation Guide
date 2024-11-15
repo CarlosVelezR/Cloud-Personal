@@ -14,16 +14,18 @@ mkdir /home/drsean/sh
 
 2. Get configuration files from GitHub
 
-    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/docker-compose.yml
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/docker-compose.yml
 
-    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/.env
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/.env
 
-    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/QA/config.php
+    wget https://raw.githubusercontent.com/CarlosVelezR/Cloud-Personal/main/config.php
     
-
 
 3. Execute docker compose file.
 
+docker compose up -d
+
+#To Reinstall | Container recreate
 docker compose up -d --force-recreate
 
 Done!
@@ -32,51 +34,10 @@ You can test your services.
 
 http://192.168.145.145:8080 -> NextCloud to manage your files. (User credentials setted in your .env file)
 http://192.168.145.145:2283 -> Immich App to Store your photos.
----------------------------------------------------------------------------------------------------------------------------
-Sync Data - With S3
 
-1. Install RClone Tool
-
-sudo -v ; curl https://rclone.org/install.sh | sudo bash
-
-2. Configure RClone, Follow the Steps.
-
-rclone config
-
-3. Edit and Move backup.sh with your s3 Connection
-
-mkdir /home/drsean/sh
-mv /home/drsean/immich/backup.sh /home/drsean/sh/backup.sh
 
 4. Create a Crontab task, I added a Crontab example!
 
 crontab -e
 
 5. Done!
-
----------------------------------------------------------------------------------------------------------------------------
-Uninstall Apps and Containers
-
-docker stop $(docker ps -q)
-docker system prune --all
-docker volume prune
-docker network prune
-
-rm -r /home/drsean/immich
-
----------------------------------------------------------------------------------------------------------------------------
-Next Cloud Configuration.
-
-/var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
-
-Next Cloud Maintenance mode
-
-Activate Maintenance mode: 
-
-sudo -u www-data php "$ncdir/occ" maintenance:mode --on
-
-NextCloud default log: 
-
-/var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/data/nextcloud.log
------- ver log CRON
-tail -f /var/log/syslog | grep CRON

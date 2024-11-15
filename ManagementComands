@@ -1,0 +1,111 @@
+---------------------------------------------------------------------------------------------------------------------------
+Sync data to S3 service with RClone
+---------------------------------------------------------------------------------------------------------------------------
+Sync Data - With S3
+
+1. Install RClone Tool
+
+sudo -v ; curl https://rclone.org/install.sh | sudo bash
+
+2. Configure RClone, Follow the Steps.
+
+rclone config
+
+3. Edit and Move backup.sh with your s3 Connection
+
+mkdir /home/drsean/sh
+mv /home/drsean/immich/backup.sh /home/drsean/sh/backup.sh
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+Upgrade Immich Version.
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Upgrade Immich Immage
+docker compose pull && docker compose up -d
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+Uninstall All deleting volumes (WARNING You will lost all data).
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Uninstall Apps and Containers
+
+docker stop $(docker ps -q)
+docker system prune --all
+docker volume prune
+docker network prune
+
+rm -r /home/drsean/immich
+rm -r /home/drsean/sh
+
+---------------------------------------------------------------------------------------------------------------------------
+Next Cloud Configuration. (Config file)
+---------------------------------------------------------------------------------------------------------------------------
+
+/var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/config/config.php
+
+---------------------------------------------------------------------------------------------------------------------------
+Activate Maintenance mode
+---------------------------------------------------------------------------------------------------------------------------
+
+Next Cloud Maintenance mode
+
+Activate Maintenance mode: 
+
+sudo -u www-data php "$ncdir/occ" maintenance:mode --on
+
+---------------------------------------------------------------------------------------------------------------------------
+NextCloud default log
+---------------------------------------------------------------------------------------------------------------------------
+/var/snap/docker/common/var-lib-docker/volumes/immich_nextcloud/_data/data/nextcloud.log
+------ ver log CRON
+tail -f /var/log/syslog | grep CRON
+
+---------------------------------------------------------------------------------------------------------------------------
+Apache Default Path
+---------------------------------------------------------------------------------------------------------------------------
+/var/snap/docker/common/var-lib-docker/overlay2/a46e8975a84113fb4b122b80e02e770b1debd3ef75a71b6766ff2431270a9418/diff/etc/apache2/apache2.conf
+---------------------------------------------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------
+Sync data to Amazon S3 service with AWS Cli (Unzip is required)
+---------------------------------------------------------------------------------------------------------------------------
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+aws configure
+
+aws s3 sync /home/drsean/immich/data/ s3://cloudsv/data --exclude "/home/drsean/immich/data/thumbs/*" --exclude "/home/drsean/immich/data/encoded-video*" --storage-class DEEP_ARCHIVE &
+
+---------------------------------------------------------------------------------------------------------------------------
+Check folder size in GB
+---------------------------------------------------------------------------------------------------------------------------
+ls -l --block-size=G
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+Create a Borg Repository
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+UPLOAD_LOCATION="/home/drsean/immich"
+BACKUP_PATH="/home/drsean/immich/backup"
+mkdir "$BACKUP_PATH"
+mkdir "$UPLOAD_LOCATION/database-backup"
+borg init --encryption=none "$BACKUP_PATH"
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+Restore a BackUp
+--------------------------------------------------------------------------------------------------------------------------------------------
+docker compose down -v  # CAUTION! Deletes all Immich data to start from scratch
+## Uncomment the next line and replace DB_DATA_LOCATION with your Postgres path to permanently reset the Postgres database
+# rm -rf DB_DATA_LOCATION # CAUTION! Deletes all Immich data to start from scratch
+docker compose pull             # Update to latest version of Immich (if desired)
+docker compose create           # Create Docker containers for Immich apps without running them
+docker start immich_postgres    # Start Postgres server
+sleep 10                        # Wait for Postgres server to start up
+# Check the database user if you deviated from the default
+gunzip < "/home/drsean/immich/database-backup/immich-database.sql.gz" \
+| sed "s/SELECT pg_catalog.set_config('search_path', '', false);/SELECT pg_catalog.set_config('search_path', 'public, pg_catalog', true);/g" \
+| docker exec -i immich_postgres psql --username=postgres  # Restore Backup
+docker compose up -d            # Start remainder of Immich apps
+--------------------------------------------------------------------------------------------------------------------------------------------
