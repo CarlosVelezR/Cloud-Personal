@@ -117,8 +117,8 @@ apt install borgbackup
 Config your repository
 
 ```
-UPLOAD_LOCATION="/home/drsean/immich"
-BACKUP_PATH="/home/drsean/immich/backup"
+UPLOAD_LOCATION="/home/drsean/immich/data"
+BACKUP_PATH="/home/drsean/immich/data/backups"
 mkdir "$BACKUP_PATH"
 mkdir "$UPLOAD_LOCATION/database-backup"
 borg init --encryption=none "$BACKUP_PATH"
