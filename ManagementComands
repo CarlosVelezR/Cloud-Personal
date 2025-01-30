@@ -87,8 +87,13 @@ ls -l --block-size=G
 Create a Borg Repository
 --------------------------------------------------------------------------------------------------------------------------------------------
 
-UPLOAD_LOCATION="/home/drsean/immich"
-BACKUP_PATH="/home/drsean/immich/backup"
+-- Delete Borg Repository if exist. --
+
+rm -r /home/drsean/immich/data/backups
+rm -rf /home/drsean/immich/data/backups
+
+UPLOAD_LOCATION="/home/drsean/immich/data"
+BACKUP_PATH="/home/drsean/immich/data/backups"
 mkdir "$BACKUP_PATH"
 mkdir "$UPLOAD_LOCATION/database-backup"
 borg init --encryption=none "$BACKUP_PATH"
@@ -109,3 +114,32 @@ gunzip < "/home/drsean/immich/database-backup/immich-database.sql.gz" \
 | docker exec -i immich_postgres psql --username=postgres  # Restore Backup
 docker compose up -d            # Start remainder of Immich apps
 --------------------------------------------------------------------------------------------------------------------------------------------
+
+
+docker compose down -v  # CAUTION! Deletes all Immich data to start from scratch
+## Uncomment the next line and replace DB_DATA_LOCATION with your Postgres path to permanently reset the Postgres database
+# rm -rf DB_DATA_LOCATION # CAUTION! Deletes all Immich data to start from scratch
+docker compose pull             # Update to latest version of Immich (if desired)
+docker compose create           # Create Docker containers for Immich apps without running them
+docker start immich_postgres    # Start Postgres server
+sleep 10                        # Wait for Postgres server to start up
+# Check the database user if you deviated from the default
+gunzip < "/home/drsean/immich/database-backup/immich-database.sql.gz" \
+| sed "s/SELECT pg_catalog.set_config('search_path', '', false);/SELECT pg_catalog.set_config('search_path', 'public, pg_catalog', true);/g" \
+| docker exec -i immich_postgres psql --username=postgres  # Restore Backup
+docker compose up -d            # Start remainder of Immich apps
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+docker exec -t immich_postgres pg_dumpall --clean --if-exists --username=postgres | gzip > "/home/drsean/immich/data/backups/dump.sql.gz"
