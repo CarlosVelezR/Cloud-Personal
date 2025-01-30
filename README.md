@@ -1,5 +1,3 @@
-# Welcome to GitHub Desktop!
-
 # Cloud-Personal Docker Setup
 
 This repository contains scripts and Docker configuration files to set up your own personal cloud storage solution using **Cloud-Personal**. The project includes Docker configuration, as well as Bash scripts to automate the deployment and management of the cloud service on your server.
@@ -59,12 +57,13 @@ git clone https://github.com/CarlosVelezR/Cloud-Personal.git
 cd Cloud-Personal-docker-setup
 ```
 ### 3. Create the folders - Replace path with yourUser.
-
+```
 mkdir /var/www/html
 mkdir /home/yourUser/immich
 cd /home/yourUser/immich
 mkdir /home/yourUser/immich/data
 mkdir /home/yourUser/sh
+```
 
 ### 2. Build the Docker Containers
 
@@ -114,7 +113,6 @@ To backup your data install Borg in your Linux Server.
 
 ```
 apt install borgbackup
-
 ```
 Config your repository
 
@@ -141,8 +139,6 @@ Execute RestoreBackUp.sh
 sh /home/drsean/immich/sh/RestoreBackUp.sh &
 
 ```
-
-
 ---
 
 ## Customization
