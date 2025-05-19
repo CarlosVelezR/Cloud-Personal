@@ -1,2 +1,2 @@
-0 1 15 1,3,6,9,12 * cd /home/drsean/sh && sh BackupImmich.sh &
-0 1 17 1,3,6,9,12 * cd /home/drsean/sh && sh RestoreBackUp.sh &
+0 1 15 1,3,6,9,12 * cd /home/andy/sh && sh BackupImmich.sh &
+0 1 17 1,3,6,9,12 * cd /home/andy/sh && sh RestoreBackUp.sh &

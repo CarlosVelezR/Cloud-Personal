@@ -1,11 +1,7 @@
 #!/bin/sh
 
+source .env
 # Paths
-UPLOAD_LOCATION="/home/drsean/immich/data"
-BACKUP_PATH="/home/drsean/immich/data/backups"
-LOG_DIR="/home/drsean/sh/logs/immichbackup"
-LOGFILE="$LOG_DIR/immichbackup.log"
-ERROR_LOGFILE="$LOG_DIR/immichbackup_error.log"
 
 # Ensure the log directory exists
 mkdir -p "$LOG_DIR"

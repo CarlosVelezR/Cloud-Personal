@@ -48,21 +48,20 @@ Before getting started, make sure you have the following tools installed on your
 
 Follow these steps to get your Cloud-Personal up and running.
 
+
 ### 1. Clone the Repository
 
 Start by cloning the repository to your local machine or server:
 
 ```bash
-git clone https://github.com/CarlosVelezR/Cloud-Personal.git
-cd Cloud-Personal-docker-setup
+sudo apt update
+sudo apt install git -y
 ```
-### 3. Create the folders - Replace path with yourUser.
-```
-mkdir /var/www/html
-mkdir /home/yourUser/immich
-cd /home/yourUser/immich
-mkdir /home/yourUser/immich/data
-mkdir /home/yourUser/sh
+
+```bash
+cd /home/andy
+git clone --branch QA https://github.com/CarlosVelezR/Cloud-Personal.git
+cd Cloud-Personal
 ```
 
 ### 2. Build the Docker Containers

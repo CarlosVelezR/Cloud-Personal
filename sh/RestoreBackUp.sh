@@ -1,4 +1,5 @@
 #!/bin/sh
+source .env
 docker compose down -v  # CAUTION! Deletes all Immich data to start from scratch
 ## Uncomment the next line and replace DB_DATA_LOCATION with your Postgres path to permanently reset the Postgres database
 # rm -rf DB_DATA_LOCATION # CAUTION! Deletes all Immich data to start from scratch

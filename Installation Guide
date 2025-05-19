@@ -2,6 +2,7 @@
 Immich installation / Nextcloud / Minio
 Replace drsean by your user.
 ---------------------------------------
+
 Steps 4 and 5 just if you want to configure a S3 service as primary storage.
 
 1. Create your directories.

@@ -1,5 +1,5 @@
 #!/bin/sh
-
+source .env
 # Definir los archivos de log
 LOGFILE="/home/drsean/sh/logs/logSh.log"
 ERRORLOG="/home/drsean/sh/logs/logSh_errors.log"
